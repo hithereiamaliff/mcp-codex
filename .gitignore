@@ -44,3 +44,9 @@ temp/
 
 # Jest cache
 .jest/
+
+# Analytics data
+data/
+
+# Docker
+.dockerignore

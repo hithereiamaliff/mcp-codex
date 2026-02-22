@@ -1,0 +1,38 @@
+# Codex MCP Server - Docker Compose
+# For self-hosting on VPS
+
+services:
+  mcp-codex:
+    build: .
+    container_name: mcp-codex
+    restart: unless-stopped
+    ports:
+      - "8087:8080"
+    environment:
+      - PORT=8080
+      - HOST=0.0.0.0
+      - NODE_ENV=production
+      - ANALYTICS_DATA_DIR=/app/data
+    volumes:
+      - analytics-data:/app/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://127.0.0.1:8080/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - mcp-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  mcp-network:
+    driver: bridge
+
+volumes:
+  analytics-data:
+    driver: local

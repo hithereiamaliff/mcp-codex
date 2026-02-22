@@ -14,8 +14,12 @@
   },
   "scripts": {
     "build": "tsc",
+    "build:tsc": "tsc",
     "start": "node dist/index.js",
+    "start:http": "node dist/http-server.js",
     "dev": "tsx src/index.ts",
+    "dev:http": "npx tsx src/http-server.ts",
+    "serve:http": "npm run build && node dist/http-server.js",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -27,7 +31,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tuannvm/codex-mcp-server.git"
+    "url": "git+https://github.com/hithereiamaliff/mcp-codex.git"
   },
   "keywords": [
     "mcp",
@@ -41,15 +45,20 @@
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/tuannvm/codex-mcp-server/issues"
+    "url": "https://github.com/hithereiamaliff/mcp-codex/issues"
   },
-  "homepage": "https://github.com/tuannvm/codex-mcp-server#readme",
+  "homepage": "https://github.com/hithereiamaliff/mcp-codex#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.24.0",
     "chalk": "^5.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^4.21.0",
     "zod": "^4.0.17"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.5",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.3.0",
     "@typescript-eslint/eslint-plugin": "^8.39.1",
@@ -60,5 +69,8 @@
     "ts-jest": "^29.4.1",
     "tsx": "^4.20.4",
     "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
